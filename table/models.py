@@ -3,7 +3,7 @@ from django.db import models
 class Field(models.Model):
     number = models.IntegerField(verbose_name='Порядковый номер')
     name = models.CharField(max_length=20, verbose_name='Имя')
-    width = models.FloatField(verbose_name='Ширина')
+    width = models.IntegerField(verbose_name='Ширина')
 
     def __str__(self):
         return self.name
