@@ -12,13 +12,13 @@ class Field(models.Model):
 class FilePath(models.Model):
     path = models.FilePathField(verbose_name='Путь к csv')
 
-    def get_path(self):
-        return self.path
+    @staticmethod
+    def get_path():
+        return FilePath.objects.first().path
 
-    def set_path(self, new_path):
-        self.pk = 1
-        self.path = new_path
-        self.save()
+    @staticmethod
+    def set_path():
+        return FilePath.objects.update_or_create(pk=1, path='phones.csv')
 
     def __str__(self):
         return f'{self.path}'

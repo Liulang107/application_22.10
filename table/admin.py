@@ -10,3 +10,9 @@ class FieldAdmin(admin.ModelAdmin):
 @admin.register(FilePath)
 class FilePathAdmin(admin.ModelAdmin):
     list_display = ('path',)
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_add_permission(self, request):
+        return False
