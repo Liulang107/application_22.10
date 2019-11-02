@@ -3,25 +3,14 @@ import os
 
 from django.shortcuts import render
 from .models import FilePath, Field
-from app.settings import BASE_DIR
-
-
-CSV_FILENAME = FilePath.objects.get(pk=1)
-COLUMNS = Field.objects.all()
-
-
-# COLUMNS = [
-#     {'name': 'id', 'width': 1},
-#     {'name': 'name', 'width': 3},
-#     {'name': 'price', 'width': 2},
-#     {'name': 'release_date', 'width': 2},
-#     {'name': 'lte_exists', 'width': 1},
-# ]
+from django.conf import settings
 
 
 def table_view(request):
+    CSV_FILENAME = FilePath.objects.get(pk=1)
+    COLUMNS = Field.objects.all()
     template = 'table.html'
-    csv_file = os.path.join(BASE_DIR, CSV_FILENAME.get_path())
+    csv_file = os.path.join(settings.BASE_DIR, CSV_FILENAME.get_path())
     if csv_file:
         with open(csv_file, 'r') as csv_file:
             table = []
